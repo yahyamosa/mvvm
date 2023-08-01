@@ -29,7 +29,17 @@ emit(secess());
 
   }
 
+  bool lang = false ;
+  bool them = false;
 
+void changlang(){
+    lang = !lang;
+    emit(secesslang());
+}
+  void changthem(){
+    them = !them;
+    emit(secessthem());
+  }
 
 
 
