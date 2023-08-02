@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:user/Futuer/home/data/cubit/cubit.dart';
 import 'package:user/Futuer/home/data/cubit/state.dart';
+import 'package:user/Futuer/home/data/model/searchuser/searchuser.dart';
 import 'package:user/Futuer/home/presantion/view/home.dart';
 
 import '../../../../generated/l10n.dart';
@@ -65,6 +66,7 @@ class _loginState extends State<login> {
                     width: MediaQuery.of(context).size.width,
                       color: Colors.blue,
                       child: MaterialButton(onPressed: (){
+
                         Navigator.push(context,MaterialPageRoute(builder:(context)=>home()));
                       } , child: Text(S.of(context).title),))
                 ],

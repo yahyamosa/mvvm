@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user/Futuer/home/data/model/user/user.dart';
 
+import '../../../search/prestiaion/view/search.dart';
+
 class show extends StatefulWidget {
    show({required this.user , super.key});
 User user ;
@@ -15,6 +17,11 @@ class _showState extends State<show> {
       appBar: AppBar(
         title: Text('USER :  ${widget.user.id}'),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed:(){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>cearch()));
+          }, icon: Icon(Icons.search))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -5,6 +5,8 @@ import 'package:user/Futuer/home/data/cubit/state.dart';
 import 'package:user/Futuer/home/data/model/user/user.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/searchuser/searchuser.dart';
+
 class mycubit extends Cubit<state>{
   mycubit() : super(init()) ;
 
@@ -41,8 +43,17 @@ void changthem(){
     emit(secessthem());
   }
 
-
-
+  List<dynamic> dataid = [] ;
+   List<Searchuser> mydataid = [] ;
+Future<List<Searchuser>> getid({required int id})async{
+  http.Response  response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/comments?postId=${id}"));
+     dataid = jsonDecode(response.body);
+     for(int i = 0 ; i < dataid.length ; i++){
+       mydataid.add(Searchuser.fromJson(dataid[i]));
+     }
+    emit(secessid(mydataid));
+    return mydataid ;
+}
 
 
 }
