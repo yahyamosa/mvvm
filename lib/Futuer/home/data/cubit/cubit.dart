@@ -36,10 +36,12 @@ void changlang(){
     lang = !lang;
     emit(secesslang());
 }
-  void changthem(){
+void changthem(){
     them = !them;
     emit(secessthem());
   }
+
+
 
 
 
