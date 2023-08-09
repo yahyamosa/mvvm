@@ -1,16 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:timezone/timezone.dart' as tz;
 import 'package:user/Futuer/home/data/cubit/cubit.dart';
 import 'package:user/Futuer/home/data/cubit/state.dart';
 import 'package:user/Futuer/login/prestaion/view_model/login.dart';
 import 'package:user/generated/l10n.dart';
+import 'package:user/hiveclass.dart';
 
-void main() {
-  runApp(const app());
+void main() async{
+  await Hive.initFlutter();
+  Hive.registerAdapter(myhiveAdapter());
+  await Hive.openBox<myhive>("mybox");
+  runApp( app());
 }
-class app extends StatelessWidget {
-  const app({super.key});
+class app extends StatefulWidget {
+   app({super.key});
+
+  @override
+  State<app> createState() => _appState();
+}
+
+
+class _appState extends State<app> {
 
   @override
   Widget build(BuildContext context) {
@@ -39,5 +56,8 @@ class app extends StatelessWidget {
           }
         ));
   }
-}
+
+
+  }
+
 

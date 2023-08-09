@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:user/Futuer/home/data/cubit/state.dart';
 import 'package:user/Futuer/home/data/model/user/user.dart';
 import 'package:http/http.dart' as http;
+import 'package:user/hiveclass.dart';
 
 import '../model/searchuser/searchuser.dart';
 
@@ -44,7 +46,8 @@ void changthem(){
   }
 
   List<dynamic> dataid = [] ;
-   List<Searchuser> mydataid = [] ;
+  List<Searchuser> mydataid = [] ;
+
 Future<List<Searchuser>> getid({required int id})async{
   http.Response  response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/comments?postId=${id}"));
      dataid = jsonDecode(response.body);
@@ -56,4 +59,41 @@ Future<List<Searchuser>> getid({required int id})async{
 }
 
 
+
+
+List<myhive> myhivelist =[];
+showData()async{
+  var mybox = Hive.box<myhive>("mybox");
+myhivelist =   mybox.values.toList();
+emit(secessshow()) ;
+}
+
+addData(myhive objhive)async{
+    try
+    {
+      var mybox = Hive.box<myhive>("mybox");
+      mybox.add(objhive);
+      print('good');
+      emit(secessadd()) ;
+    }
+    catch(e){
+      print(e.toString());
+    }
+  }
+
+int i = 0 ;
+
+void increcindex(){
+  if(i < 2){
+    i++ ;
+    emit(increc());
+  }
+}
+
+  void decresindex(){
+   if(i > 0){
+     i-- ;
+     emit(decres());
+   }
+  }
 }

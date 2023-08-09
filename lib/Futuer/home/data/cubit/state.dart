@@ -19,3 +19,9 @@ class secessid extends state {
   secessid(this.data);
 }
 class failid extends state {}
+
+class secessshow extends state {}
+class secessadd extends state {}
+
+class increc extends state{}
+class decres extends state{}
